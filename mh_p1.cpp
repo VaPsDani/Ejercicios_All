@@ -27,7 +27,7 @@ std::vector<AlumnoTupla> GuardarCalificaciones()
 
 
 
-float CalcularCalificacionPromedio(std::vector<AlumnoTupla> alumnos)
+float CalcularCalificacionPromedio(const std::vector<AlumnoTupla>& alumnos)
 {
     float total = 0.0f;
     for (auto [nombre, nota] : alumnos)
@@ -38,15 +38,26 @@ float CalcularCalificacionPromedio(std::vector<AlumnoTupla> alumnos)
     return promedio;
 }
 
-void ObtenerCantidadSuperiorPromedio()
+int ObtenerCantidadSuperiorPromedio(const std::vector<AlumnoTupla>& alumnos)
 {
+    float promedio = CalcularCalificacionPromedio(alumnos);
+    int cont=0;
+    //Pattern Matching
+    for (auto [nombre, nota] : alumnos)
+    {
+        if (nota>promedio)
+        {
+            cont++;
+        }
+    }
+    return cont;
 }
 
 void ImprimirEstudianteMayorNota()
 {
 }
 
-void ImprimirAlumnos(std::vector<AlumnoTupla> alumnos)
+void ImprimirAlumnos(std::vector<AlumnoTupla>& alumnos)
 {
     /*for (AlumnoTupla alumno : alumnos)
     {
